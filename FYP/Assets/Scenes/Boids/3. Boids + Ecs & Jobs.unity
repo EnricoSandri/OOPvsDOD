@@ -390,8 +390,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: -10}
+  m_LocalRotation: {x: -0.05015209, y: 0.87036645, z: -0.090678394, w: -0.4813776}
+  m_LocalPosition: {x: 15.5103245, y: 4.9, z: 9.365419}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -426,14 +426,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9998331e2b98e8249a7ad2e9f8785c05, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  amountOfBoids: 500
+  amountOfBoids: 1200
   boidSharedMesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
   boidSharedMaterial: {fileID: 2100000, guid: df2d38f04ce178c448e415b6e525b7c0, type: 2}
   speed: 1
   perceptionRadius: 1
-  separationMultiplier: 1
-  cohesionMultiplier: 1
-  alignmentMultiplier: 1
+  separationMultiplier: 4
+  cohesionMultiplier: 0.1
+  alignmentMultiplier: 5
   enclosureSize: 10
   wallAvoidanceMultiplier: 1
   turnAwayFromWallDistance: 0.1
