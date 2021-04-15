@@ -60,9 +60,9 @@ public class PerlinManager : MonoBehaviour
     private void DrawCubes()
     {
         //DRAW THE CUBES IN EACH DIRECTION
-        for (int z = -worldHalfSize; z <= worldHalfSize; z++)
+        for (int z = -worldHalfSize; z <= (worldHalfSize - 1); z++)
         {
-            for (int x = -worldHalfSize; x <= worldHalfSize; x++)
+            for (int x = -worldHalfSize; x <= (worldHalfSize - 1); x++)
             {
                 //position = new Vector3(x, 0, z);
                 worldCubes.Add(Instantiate(cubePrefab, new Vector3(x, 0, z), Quaternion.identity));
