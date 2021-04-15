@@ -14,7 +14,7 @@ public class ECS_Jobs_PerlinManager : MonoBehaviour
     //public GameObjects
     public GameObject cubePrefab;
     [SerializeField]
-    public int worldHalfSize;
+    public int axisHalfSize;
 
     //Modifiers in inspector of the PerlinNoise
     [Range(0.1f, 10f)]
@@ -57,7 +57,7 @@ public class ECS_Jobs_PerlinManager : MonoBehaviour
         if (IsActive && loopCount < 1)
         {
             inputValue = int.Parse(amount.text);
-            worldHalfSize = inputValue;
+            axisHalfSize = inputValue;
             
             instance = this; // Set the intstance to this instance.
 
@@ -69,9 +69,9 @@ public class ECS_Jobs_PerlinManager : MonoBehaviour
             Entity cubeEntity = GameObjectConversionUtility.ConvertGameObjectHierarchy(cubePrefab, settings);
 
             //DRAW THE CUBES IN EACH DIRECTION
-            for (int z = -worldHalfSize; z <= worldHalfSize; z++)
+            for (int z = -axisHalfSize; z <= axisHalfSize-1; z++)
             {
-                for (int x = -worldHalfSize; x <= worldHalfSize; x++)
+                for (int x = -axisHalfSize; x <= axisHalfSize-1; x++)
                 {
                     var position = new Vector3(x, 0, z);
                     Entity entityInstance;

@@ -8,7 +8,7 @@ public class PerlinManager : MonoBehaviour
     //public GameObjects
     public GameObject cubePrefab;
     //[SerializeField]
-     int worldHalfSize;
+     int axisHalfSize;
 
     public static bool changeData = false;
 
@@ -61,7 +61,7 @@ public class PerlinManager : MonoBehaviour
         if (IsActive && loopCount < 1)
         {
             inputValue = int.Parse(amount.text);
-            worldHalfSize = inputValue;
+            axisHalfSize = inputValue;
             canvas.SetActive(false);
             DrawCubes();
             loopCount++;
@@ -76,9 +76,9 @@ public class PerlinManager : MonoBehaviour
     private void DrawCubes()
     {
         //DRAW THE CUBES IN EACH DIRECTION
-        for (int z = -worldHalfSize; z <= worldHalfSize; z++)
+        for (int z = -axisHalfSize; z <= axisHalfSize - 1; z++)
         {
-            for (int x = -worldHalfSize; x <= worldHalfSize; x++)
+            for (int x = -axisHalfSize; x <= axisHalfSize - 1; x++)
             {
                 //position = new Vector3(x, 0, z);
                 worldCubes.Add(Instantiate(cubePrefab, new Vector3(x, 0, z), Quaternion.identity));
