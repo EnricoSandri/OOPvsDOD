@@ -13,7 +13,7 @@ public class ECS_PerlinSystem : ComponentSystem
         {
             perlinManager = ECS_PerlinManager.instance;
         }
-        if (perlinManager)
+        if (perlinManager && perlinManager.IsActive)
         {
             float strenght1 = perlinManager.strenght1;
             float scale1 = perlinManager.scale1;
@@ -21,8 +21,8 @@ public class ECS_PerlinSystem : ComponentSystem
             float scale2 = perlinManager.scale2;
             float strenght3 = perlinManager.strenght3;
             float scale3 = perlinManager.scale3;
-           // float moveVal = perlinManager.slider.value;
-           // strenght1 = moveVal;
+            float moveVal = perlinManager.moveValue.value;
+            strenght1 = moveVal;
 
             Entities.ForEach((ref Translation position, ref ECS_CubeData cubeData) =>
             {

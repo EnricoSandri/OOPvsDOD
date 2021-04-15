@@ -142,15 +142,13 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: '
-
-    Best:
+  m_text: 'Best:
 
     Avg:
 
     Worst:
 
-    Duration:'
+'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -224,12 +222,12 @@ MonoBehaviour:
   m_margin: {x: -1.829956, y: 0, z: -18.909607, w: 0}
   m_textInfo:
     textComponent: {fileID: 1580848950628179208}
-    characterCount: 28
+    characterCount: 18
     spriteCount: 0
-    spaceCount: 4
-    wordCount: 5
+    spaceCount: 3
+    wordCount: 3
     linkCount: 0
-    lineCount: 5
+    lineCount: 3
     pageCount: 1
     materialCount: 1
   m_isUsingLegacyAnimationComponent: 0
@@ -312,7 +310,7 @@ MonoBehaviour:
 
     000
 
-    000'
+'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -386,12 +384,12 @@ MonoBehaviour:
   m_margin: {x: 9.149841, y: 0, z: 0, w: 0}
   m_textInfo:
     textComponent: {fileID: 1580848950805670774}
-    characterCount: 19
+    characterCount: 16
     spriteCount: 0
     spaceCount: 4
-    wordCount: 5
+    wordCount: 4
     linkCount: 0
-    lineCount: 5
+    lineCount: 4
     pageCount: 1
     materialCount: 1
   m_isUsingLegacyAnimationComponent: 0

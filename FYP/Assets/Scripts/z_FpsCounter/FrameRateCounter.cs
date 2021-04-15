@@ -30,31 +30,39 @@ public class FrameRateCounter : MonoBehaviour
 
     private void Update()
     {
-        float frameDuration = Time.unscaledDeltaTime; // get the time elapesed between previous frame and the current one
+        float
+            frameDuration = Time.unscaledDeltaTime; // get the time elapesed between previous frame and the current one
         frames += 1;
         duration += frameDuration;
 
         // check if current frame duration is < bestDuration, if so make it the bestDuration.
-        if(frameDuration < bestDuration) { bestDuration = frameDuration; }
-        // check if current frame duration is > bestDuration, if so make it the worstDuration.
-        if (frameDuration > worstDuration) { worstDuration = frameDuration; }
-
-        if(duration >= sampleDuration)
+        if (frameDuration < bestDuration)
         {
-            if(displayMode == DisplayMode.FPS)
+            bestDuration = frameDuration;
+        }
+
+        // check if current frame duration is > bestDuration, if so make it the worstDuration.
+        if (frameDuration > worstDuration)
+        {
+            worstDuration = frameDuration;
+        }
+
+        if (duration >= sampleDuration)
+        {
+            if (displayMode == DisplayMode.FPS)
             {
                 var best = 1f / bestDuration;
                 var avg = frames / duration;
                 var wrst = 1f / worstDuration;
-                
-                 display.SetText(
+
+                display.SetText(
                     "FPS\n{0:0}\n{1:0}\n{2:0}\n  {3:1}",
-                    
+
                     best,
                     avg,
                     wrst
                     //sampleDuration
-                    );
+                );
                 bestTime.Add(best);
                 time.Add(frames);
                 //display.SetText(
@@ -68,12 +76,12 @@ public class FrameRateCounter : MonoBehaviour
             else
             {
                 display.SetText(
-                   "MS\n{0:1}\n{1:1}\n{2:1}\n  {3:1}",
-                   1000f * bestDuration,
-                   1000f * duration / frames,
-                   1000f * worstDuration
-                   //sampleDuration
-                   );
+                    "MS\n{0:1}\n{1:1}\n{2:1}\n  {3:1}",
+                    1000f * bestDuration,
+                    1000f * duration / frames,
+                    1000f * worstDuration
+                    //sampleDuration
+                );
             }
 
 
@@ -83,7 +91,7 @@ public class FrameRateCounter : MonoBehaviour
             bestDuration = float.MaxValue;
             worstDuration = 0f;
 
-            // WRITE TO FILE THE VALUES. https://forum.unity.com/threads/write-data-from-list-to-csv-file.643561/.
+            /*// WRITE TO FILE THE VALUES. https://forum.unity.com/threads/write-data-from-list-to-csv-file.643561/.
             string filePath = GetPath();
             StreamWriter writer = new StreamWriter(filePath);
             writer.WriteLine("Best Time , Frames ");
@@ -98,7 +106,7 @@ public class FrameRateCounter : MonoBehaviour
             writer.Flush();
             writer.Close();
         }
-    }
+    
 
     private string GetPath()
     {
@@ -106,5 +114,8 @@ public class FrameRateCounter : MonoBehaviour
         Debug.Log(path);
 
         return path;
+    }*/
+
+        }
     }
 }

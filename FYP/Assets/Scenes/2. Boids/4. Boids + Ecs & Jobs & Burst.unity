@@ -426,7 +426,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ef9ed473eff6064786ad3f45980e01b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  amountOfBoids: 6500
+  amountOfBoids: 5000
   boidSharedMesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
   boidSharedMaterial: {fileID: 2100000, guid: df2d38f04ce178c448e415b6e525b7c0, type: 2}
   speed: 1

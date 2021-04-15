@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using Unity.Entities;
 using Unity.Transforms;
 using UnityEngine.UI;
@@ -37,35 +38,53 @@ public class ECS_PerlinManager : MonoBehaviour
     public static float _strenght3;
     public static float _scale3;
 
-    //public Slider slider;
+
     //bool to change material, so it doesnt need to run on update
     public static bool changeData = false;
 
     private void Awake()
     {
-        instance = this; // Set the instance to this instance.
-
-        // Get the entity manager of this world
-        EntityManager = World.DefaultGameObjectInjectionWorld.EntityManager;
-
-        // using gameobject conversion utility to convert prefab to entity, could use shared mesh and material?
-        var settings = GameObjectConversionSettings.FromWorld(World.DefaultGameObjectInjectionWorld, null);
-        Entity cubeEntity = GameObjectConversionUtility.ConvertGameObjectHierarchy(cubePrefab, settings);
-
-        //DRAW THE CUBES IN EACH DIRECTION
-        for (int z = -worldHalfSize; z <= worldHalfSize; z++)
+       
+    }
+    public GameObject canvas;
+    public Text amount; 
+    public Slider moveValue;
+    private int loopCount = 0;
+    private int inputValue;
+    public bool IsActive { get; set; }
+    private void Update()
+    {
+        if (IsActive && loopCount < 1 )
         {
-            for (int x = -worldHalfSize; x <= worldHalfSize; x++)
+            inputValue = int.Parse(amount.text);
+            worldHalfSize = inputValue;
+            
+            instance = this; // Set the instance to this instance.
+
+            // Get the entity manager of this world
+            EntityManager = World.DefaultGameObjectInjectionWorld.EntityManager;
+
+            // using gameobject conversion utility to convert prefab to entity, could use shared mesh and material?
+            var settings = GameObjectConversionSettings.FromWorld(World.DefaultGameObjectInjectionWorld, null);
+            Entity cubeEntity = GameObjectConversionUtility.ConvertGameObjectHierarchy(cubePrefab, settings);
+
+            //DRAW THE CUBES IN EACH DIRECTION
+            for (int z = -worldHalfSize; z <= worldHalfSize; z++)
             {
-                var position = new Vector3(x, 0, z);
-                Entity entityInstance;
+                for (int x = -worldHalfSize; x <= worldHalfSize; x++)
+                {
+                    var position = new Vector3(x, 0, z);
+                    Entity entityInstance;
 
-                entityInstance = EntityManager.Instantiate(cubeEntity);
+                    entityInstance = EntityManager.Instantiate(cubeEntity);
 
-                EntityManager.SetComponentData(entityInstance, new Translation { Value = position });
-                EntityManager.SetComponentData(entityInstance, new ECS_CubeData { initialPosition = position });
+                    EntityManager.SetComponentData(entityInstance, new Translation { Value = position });
+                    EntityManager.SetComponentData(entityInstance, new ECS_CubeData { initialPosition = position });
+                }
             }
-        } 
+            canvas.SetActive(false);
+            loopCount++;
+        }
     }
 }
 

@@ -7,14 +7,14 @@ public class PerlinManager : MonoBehaviour
 {
     //public GameObjects
     public GameObject cubePrefab;
-    [SerializeField]
-    public int worldHalfSize;
+    //[SerializeField]
+     int worldHalfSize;
 
     public static bool changeData = false;
 
     //Modifiers in inspector of the PerlinNoise
     [Range(0.1f, 10f)]
-    public float strenght1 = 1f;
+    public float strenght1 = 2f;
     [Range(0.01f, 1f)]
     public float scale1 = 0.1f;
     [Range(0.1f, 10f)]
@@ -43,18 +43,34 @@ public class PerlinManager : MonoBehaviour
     private float _strength3;
     private float _scale3;
 
-    //public Slider moveVAl;
+    public GameObject canvas;
+    public Text amount; 
+    public Slider moveValue;
+    private int loopCount = 0;
+    private int inputValue;
+    public bool IsActive { get; set; }
+
     private void Start()
     {
-        DrawCubes();
+        
+        //DrawCubes();
     }
 
     private void Update()
     {
-        //strenght1 = moveVAl.value;
+        if (IsActive && loopCount < 1)
+        {
+            inputValue = int.Parse(amount.text);
+            worldHalfSize = inputValue;
+            canvas.SetActive(false);
+            DrawCubes();
+            loopCount++;
+        }
+        strenght1 = moveValue.value;
+        AddPerlin();
         StartCoroutine(routine: DataChangeCheck());
         if (!changeData) return;
-        AddPerlin();
+        //AddPerlin();
     }
 
     private void DrawCubes()

@@ -16,7 +16,7 @@ public class ECS_BoidsSystem : ComponentSystem
             manager = ECS_BoidManager.instance;
         }
         // Run only if there is a manager.
-        if (manager)
+        if (manager && manager.IsActive)
         {
             //Find and store a reference to all the entities with 
             //BoidComponent and a local to world component by doing a query on the archetype
