@@ -46,7 +46,7 @@ public class ECS_Jobs_PerlinManager : MonoBehaviour
         // Get the entity manager of this world
         EntityManager = World.DefaultGameObjectInjectionWorld.EntityManager;
 
-        // using gameobject convertion utility to convert prefab to entity, could use shadermesh and material?
+        // using gameobject conversion utility to convert prefab to entity, could use shadermesh and material?
         var settings = GameObjectConversionSettings.FromWorld(World.DefaultGameObjectInjectionWorld, null);
         Entity cubeEntity = GameObjectConversionUtility.ConvertGameObjectHierarchy(cubePrefab, settings);
 

@@ -4,5 +4,8 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/1. Perlin/0.1. Perlin GameObjects.unity
+    guid: 103754ee007a1c14697cebed94db55a4
   m_configObjects: {}

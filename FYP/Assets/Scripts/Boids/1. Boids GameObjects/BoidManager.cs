@@ -20,7 +20,7 @@ public class BoidManager : MonoBehaviour
     //Boid values
     [Header("Boid Values")]
     public float speed;              // Speed of each boid.
-    public float perceptionRadius;  // Boids perceptionRadious to check for other nearby boids.
+    public float perceptionRadius;  // Boids perceptionRadius to check for other nearby boids.
 
     // Customisable Rule Multipliers.
     [Header("Rules Multipliers")]
@@ -39,20 +39,18 @@ public class BoidManager : MonoBehaviour
     public  List<Boids> boids;
     private Quaternion randomRotation;
     private Vector3 randomPosition;
-
-
     private void Awake()
     {
-        instance = this; // Set the intstance to this instance.
+        instance = this; // Set the instance to this instance.
 
         boids.Clear(); // Make sure the list of boids is empty.
 
         // Spawn the # boids in the enclosure at random positions and rotations. 
-        for (int i = 0; i < amountOfBoids; i++)  //Itaration through the number of boids set by the user.
+        for (int i = 0; i < amountOfBoids; i++)  //Iteration through the number of boids set by the user.
         {
-            RandomisePositions();       // Radomise the spawn location for each boid.
-            RandomiseRotation();        // Randomise the spwan rotation for each boid.
-            InstatiateAndAddToList();   // Instatntiaton of the boids applying the randomised values and add top the boids list.
+            RandomisePositions();       // Randomise the spawn location for each boid.
+            RandomiseRotation();        // Randomise the spawn rotation for each boid.
+            InstatiateAndAddToList();   // Instantiation of the boids and applying the randomised values.
         }
     }
     

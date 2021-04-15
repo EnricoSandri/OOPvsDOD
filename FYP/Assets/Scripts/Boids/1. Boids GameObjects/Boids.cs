@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
+﻿using UnityEngine;
 public class Boids : MonoBehaviour
 {
     // Reference to the Boid manager.
@@ -35,9 +31,9 @@ public class Boids : MonoBehaviour
         Vector3 positionSum = Vector3.zero;
         Vector3 headingSum = Vector3.zero;
 
-        int nearbyBoids = 0; // Boids present in the  preseption radius.
+        int nearbyBoids = 0; // Boids present in the  perception radius.
 
-        for (int i = 0; i < manager.boids.Count; i++) // itarate through all the boids present in the boids list present in the manager.
+        for (int i = 0; i < manager.boids.Count; i++) // iterate through all the boids present in the boids list present in the manager.
         {
             if(this != manager.boids[i])  // all the other boids apart this.
             {
@@ -49,7 +45,7 @@ public class Boids : MonoBehaviour
                 {
                     // Get all the values  of boids within the radius
 
-                    // seperation => prevents boids from crowding. negative force needed to move away from the other boid.
+                    // separation => prevents boids from crowding. negative force needed to move away from the other boid.
                     seperationSum += -(otherBoidPosition - transform.position) * (1f / Mathf.Max(otherBoidDistance, .0001f));
                     // Get the position of the other boid
                     positionSum += otherBoidPosition;
@@ -102,7 +98,7 @@ public class Boids : MonoBehaviour
         velocity += ruleValues * Time.deltaTime;              // apply the rule value into time.
         velocity = velocity.normalized * manager.speed;       // normalise.
 
-        transform.position += velocity * Time.deltaTime;       // apply the velocit to the position of the boid into time
+        transform.position += velocity * Time.deltaTime;       // apply the velocity to the position of the boid into time
         transform.rotation = Quaternion.LookRotation(velocity); // apply the forward and rotation using the velocity.
     }
 

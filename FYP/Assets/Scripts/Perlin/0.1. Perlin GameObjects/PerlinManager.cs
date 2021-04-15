@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PerlinManager : MonoBehaviour
 {
@@ -27,7 +28,7 @@ public class PerlinManager : MonoBehaviour
 
     public List<GameObject> worldCubes = new List<GameObject>();
 
-    //Global Values to check aginst
+    //Global Values to check against
     private float height;
     private float perlin1;
     private float perlin2;
@@ -42,6 +43,7 @@ public class PerlinManager : MonoBehaviour
     private float _strength3;
     private float _scale3;
 
+    //public Slider moveVAl;
     private void Start()
     {
         DrawCubes();
@@ -49,7 +51,8 @@ public class PerlinManager : MonoBehaviour
 
     private void Update()
     {
-        StartCoroutine(DataChangeCheck());
+        //strenght1 = moveVAl.value;
+        StartCoroutine(routine: DataChangeCheck());
         if (!changeData) return;
         AddPerlin();
     }

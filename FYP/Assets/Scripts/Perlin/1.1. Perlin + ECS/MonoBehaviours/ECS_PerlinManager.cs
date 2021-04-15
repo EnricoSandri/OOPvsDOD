@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using Unity.Entities;
 using Unity.Transforms;
+using UnityEngine.UI;
 
 public class ECS_PerlinManager : MonoBehaviour
 {
@@ -28,7 +29,7 @@ public class ECS_PerlinManager : MonoBehaviour
     [Range(0.01f, 1f)]
     public float scale3 = 0.1f;
 
-    //PerlinNoise Mofdifiers
+    //PerlinNoise Modifiers
     public static float _strenght1;
     public static float _scale1;
     public static float _strenght2;
@@ -36,17 +37,18 @@ public class ECS_PerlinManager : MonoBehaviour
     public static float _strenght3;
     public static float _scale3;
 
+    //public Slider slider;
     //bool to change material, so it doesnt need to run on update
     public static bool changeData = false;
 
     private void Awake()
     {
-        instance = this; // Set the intstance to this instance.
+        instance = this; // Set the instance to this instance.
 
         // Get the entity manager of this world
         EntityManager = World.DefaultGameObjectInjectionWorld.EntityManager;
 
-        // using gameobject convertion utility to convert prefab to entity, could use shadermesh and material?
+        // using gameobject conversion utility to convert prefab to entity, could use shared mesh and material?
         var settings = GameObjectConversionSettings.FromWorld(World.DefaultGameObjectInjectionWorld, null);
         Entity cubeEntity = GameObjectConversionUtility.ConvertGameObjectHierarchy(cubePrefab, settings);
 
@@ -63,7 +65,7 @@ public class ECS_PerlinManager : MonoBehaviour
                 EntityManager.SetComponentData(entityInstance, new Translation { Value = position });
                 EntityManager.SetComponentData(entityInstance, new ECS_CubeData { initialPosition = position });
             }
-        }
+        } 
     }
 }
 

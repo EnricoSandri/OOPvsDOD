@@ -13,7 +13,7 @@ public class ECS_Jobs_Burst_BoidSystem : JobComponentSystem
     // JobHandel Update
     protected override JobHandle OnUpdate(JobHandle inputDeps)
     {
-        //Check if BoidManager exsists, if not creat one.
+        //Check if BoidManager exists, if not creat one.
         if (!manager)
         {
             manager = Ecs_Jobs_Burst_BoidManager.instance;
@@ -21,23 +21,23 @@ public class ECS_Jobs_Burst_BoidSystem : JobComponentSystem
         // Run only if there is a manager.
         if (manager)
         {
-            //Find and store a refrence to all the entities with 
+            //Find and store a reference to all the entities with 
             //BoidComponent and a local to world component by doing a query on the archetype
             EntityQuery boidEntityQuery =
                 GetEntityQuery(ComponentType.ReadOnly<ECS_Jobs_BoidComponent>(),
                                ComponentType.ReadOnly<LocalToWorld>());
             
-            //Array Containing the entites from query // to dispose.
+            //Array Containing the entities from query // to dispose.
             NativeArray<Entity> entities = boidEntityQuery.ToEntityArray(Allocator.TempJob);
-            //Array containing the LocalToWorld of the entitier
+            //Array containing the LocalToWorld of the entities
             NativeArray<LocalToWorld> LTW_Array = boidEntityQuery.ToComponentDataArray<LocalToWorld>(Allocator.TempJob);
 
             // Job arrays, deallocated after job completion. 
             NativeArray<BoidEntityWithLTW> boidEntityWithLTW = new NativeArray<BoidEntityWithLTW>(entities.Length, Allocator.TempJob);
-            //Array containg all the boids next position
+            //Array containing all the boids next position
             NativeArray<float4x4> nextBoidPositionArray = new NativeArray<float4x4>(entities.Length, Allocator.TempJob);
 
-            // Itarate through the entites, for each entitie in the array assign the valuse ion the struct.
+            // Iterate through the entities, for each entity in the array assign the values ion the struct.
             for (int i = 0; i < entities.Length; i++)
             {
                 boidEntityWithLTW[i] = new BoidEntityWithLTW
@@ -93,12 +93,12 @@ public class ECS_Jobs_Burst_BoidSystem : JobComponentSystem
     //Job on enetites with boidcomponent 
     [BurstCompile]
     [RequireComponentTag(typeof(ECS_Jobs_BoidComponent))]
-    //Job for each enetity with reference LTW 
+    //Job for each entity with reference LTW 
     private struct BoidEntityJob : IJobForEachWithEntity<LocalToWorld>
     {
-        // Job required varibles 
+        // Job required variables 
         [DeallocateOnJobCompletion] [ReadOnly] public NativeArray<BoidEntityWithLTW> otherBoidEntities; // Array for other boids with LTW component.
-        [WriteOnly] public NativeArray<float4x4> nextBoidPosition; // Array for next positon. 
+        [WriteOnly] public NativeArray<float4x4> nextBoidPosition; // Array for next position. 
 
         [ReadOnly] public float speed;
         [ReadOnly] public float deltaTime;
@@ -122,9 +122,9 @@ public class ECS_Jobs_Burst_BoidSystem : JobComponentSystem
             float3 positionSum = float3.zero;
             float3 headingSum = float3.zero;
 
-            int nearbyBoids = 0; // Boids present in the  preseption radius.
+            int nearbyBoids = 0; // Boids present in the  perception radius.
 
-            //Itarate through the otherboidentities array 
+            //Iterate through the otherboid entities array 
             for (int otherBoidIndex = 0; otherBoidIndex < otherBoidEntities.Length; otherBoidIndex++)
             {
                 if(boidEntity != otherBoidEntities[otherBoidIndex].BoidEntity) // all the other boids apart this.
@@ -175,7 +175,7 @@ public class ECS_Jobs_Burst_BoidSystem : JobComponentSystem
             boidVelocity += force * deltaTime;
             boidVelocity = math.normalize(boidVelocity) * speed;
 
-            //store the next postition of the boid at index
+            //store the next position of the boid at index
             nextBoidPosition[boidIndex] = float4x4.TRS(
                 boidLTW.Position + boidVelocity * deltaTime,
                 quaternion.LookRotationSafe(boidVelocity, boidLTW.Up),
@@ -185,10 +185,10 @@ public class ECS_Jobs_Burst_BoidSystem : JobComponentSystem
     }
 
     //Apply the next position to the boids.
-    //Job on enetites with boidcomponent 
+    //Job on entities with boidcomponent 
     [BurstCompile]
     [RequireComponentTag(typeof(ECS_Jobs_BoidComponent))]
-    //Job for each enetity with reference LTW 
+    //Job for each entity with reference LTW 
     private struct BoidEntityMovementJob : IJobForEachWithEntity<LocalToWorld>
     {
         [DeallocateOnJobCompletion]

@@ -2,9 +2,6 @@
 using Unity.Entities;
 using Unity.Jobs;
 using Unity.Transforms;
-using Unity.Rendering;
-using Unity.Collections;
-
 public class ECS_Jobs_PerlinSystem : JobComponentSystem
 {
     private ECS_Jobs_PerlinManager perlinManager;

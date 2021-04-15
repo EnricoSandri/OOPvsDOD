@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using Unity.Entities;
 using Unity.Transforms;
+using UnityEngine.UI;
 
 public class ECS_PerlinSystem : ComponentSystem
 {
@@ -20,6 +21,8 @@ public class ECS_PerlinSystem : ComponentSystem
             float scale2 = perlinManager.scale2;
             float strenght3 = perlinManager.strenght3;
             float scale3 = perlinManager.scale3;
+           // float moveVal = perlinManager.slider.value;
+           // strenght1 = moveVal;
 
             Entities.ForEach((ref Translation position, ref ECS_CubeData cubeData) =>
             {

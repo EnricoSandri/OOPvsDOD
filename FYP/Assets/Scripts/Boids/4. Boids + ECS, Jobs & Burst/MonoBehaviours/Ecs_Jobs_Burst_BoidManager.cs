@@ -19,7 +19,7 @@ public class Ecs_Jobs_Burst_BoidManager : MonoBehaviour
     //Boid values
     [Header("Boid Values")]
     public float speed;              // Speed of each boid.
-    public float perceptionRadius;  // Boids perceptionRadious to check for other nearby boids.
+    public float perceptionRadius;  // Boids perceptionRadius to check for other nearby boids.
 
     // Customisable Rule Multipliers.
     [Header("Rules Multipliers")]
@@ -38,13 +38,13 @@ public class Ecs_Jobs_Burst_BoidManager : MonoBehaviour
 
     private void Awake()
     {
-        instance = this; // Set the intstance to this instance.
+        instance = this; // Set the instance to this instance.
 
         // Get the entity manager of this world
         EntityManager entityManager = World.DefaultGameObjectInjectionWorld.EntityManager;
 
         /*
-            Create the Archetype with entity and its neccesary components
+            Create the Archetype with entity and its necessary components
             - BOID COMPONENT
             - MESH
             - MESH RENDERER
@@ -57,7 +57,7 @@ public class Ecs_Jobs_Burst_BoidManager : MonoBehaviour
             typeof(LocalToWorld)
             );
 
-        //Array cointaining the boid entities. Temp allocator, fastest and lifespan of a frame or less. 
+        //Array containing the boid entities. Temp allocator, fastest and lifespan of a frame or less. 
         NativeArray<Entity> boidArray = new NativeArray<Entity>(amountOfBoids, Allocator.Temp); // TO DISPOSE
 
         // Create the boid entities, from the boidArray.
@@ -74,9 +74,9 @@ public class Ecs_Jobs_Burst_BoidManager : MonoBehaviour
             entityManager.SetComponentData(boidArray[i], new LocalToWorld
             {
 
-                //Access the TRASFORM of the entity. TRS(translation,rotation,scale) 
+                //Access the TRANSFORM of the entity. TRS(translation,rotation,scale) 
                 Value = float4x4.TRS(
-                        RandomisePositions(),       // Radomise the spawn location for each boid.
+                        RandomisePositions(),       // Randomise the spawn location for each boid.
                         RandomiseRotation(),       // Randomise the spawn rotation for each boid.
                         scale)
             });

@@ -2,8 +2,6 @@
 using Unity.Entities;
 using Unity.Jobs;
 using Unity.Transforms;
-using Unity.Rendering;
-using Unity.Collections;
 using Unity.Burst;
 
 [BurstCompile]
