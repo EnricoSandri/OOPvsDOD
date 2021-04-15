@@ -1,9 +1,11 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using Unity.Entities;
 using Unity.Rendering;
 using Unity.Transforms;
 using Unity.Collections;
 using Unity.Mathematics;
+using UnityEngine.UI;
 
 public class Ecs_Jobs_Burst_BoidManager : MonoBehaviour
 {
@@ -35,63 +37,11 @@ public class Ecs_Jobs_Burst_BoidManager : MonoBehaviour
     public float enclosureSize; public float wallAvoidanceMultiplier; public float turnAwayFromWallDistance;
 
     public float3 scale = new float3(.1f, .1f, .3f);
-
-    private void Awake()
-    {
-        instance = this; // Set the instance to this instance.
-
-        // Get the entity manager of this world
-        EntityManager entityManager = World.DefaultGameObjectInjectionWorld.EntityManager;
-
-        /*
-            Create the Archetype with entity and its necessary components
-            - BOID COMPONENT
-            - MESH
-            - MESH RENDERER
-            - TRANSFORM
-        */
-        EntityArchetype boidEntityArchetype = entityManager.CreateArchetype(
-            typeof(ECS_Jobs_BoidComponent),
-            typeof(RenderMesh),
-            typeof(RenderBounds),
-            typeof(LocalToWorld)
-            );
-
-        //Array containing the boid entities. Temp allocator, fastest and lifespan of a frame or less. 
-        NativeArray<Entity> boidArray = new NativeArray<Entity>(amountOfBoids, Allocator.Temp); // TO DISPOSE
-
-        // Create the boid entities, from the boidArray.
-        entityManager.CreateEntity(boidEntityArchetype, boidArray);
-
-        /* Set component values such as:
-            random position and rotation,
-            Mesh and  Mesh Renderer
-            for each boid in present in the boidArray
-        */
-        for (int i = 0; i < boidArray.Length; i++)
-        {
-            //Set the position and rotation
-            entityManager.SetComponentData(boidArray[i], new LocalToWorld
-            {
-
-                //Access the TRANSFORM of the entity. TRS(translation,rotation,scale) 
-                Value = float4x4.TRS(
-                        RandomisePositions(),       // Randomise the spawn location for each boid.
-                        RandomiseRotation(),       // Randomise the spawn rotation for each boid.
-                        scale)
-            });
-
-            //Set the RenderMesh values, RenderMesh (Mesh, Material)
-            entityManager.SetSharedComponentData(boidArray[i], new RenderMesh
-            {
-                mesh = boidSharedMesh,        // Set Mesh
-                material = boidSharedMaterial, // Set Material
-            });
-        }
-
-        //DISPOSE ARRAY
-        boidArray.Dispose();
-    }
+    
+    public bool IsActive { get; set; }
+    public GameObject canvas;
+    public Text inputText;
+    private int stopLoop;
 
     //Randomise the spawn position values within the enclosure.
     private float3 RandomisePositions()
@@ -121,5 +71,70 @@ public class Ecs_Jobs_Burst_BoidManager : MonoBehaviour
         Gizmos.DrawWireCube(                  // Draw the Cube with the center being x0.y0.z0 and size of enclosure.
             Vector3.zero,
             new Vector3(enclosureSize, enclosureSize, enclosureSize));
+    }
+
+    private void Update()
+    {
+        if (IsActive && stopLoop < 1)
+        {
+            int inputValue = int.Parse(inputText.text);
+            amountOfBoids = inputValue;
+
+            instance = this; // Set the instance to this instance.
+
+            // Get the entity manager of this world
+            EntityManager entityManager = World.DefaultGameObjectInjectionWorld.EntityManager;
+
+            /*
+                Create the Archetype with entity and its necessary components
+                - BOID COMPONENT
+                - MESH
+                - MESH RENDERER
+                - TRANSFORM
+            */
+            EntityArchetype boidEntityArchetype = entityManager.CreateArchetype(
+                typeof(ECS_Jobs_BoidComponent),
+                typeof(RenderMesh),
+                typeof(RenderBounds),
+                typeof(LocalToWorld)
+                );
+
+            //Array containing the boid entities. Temp allocator, fastest and lifespan of a frame or less. 
+            NativeArray<Entity> boidArray = new NativeArray<Entity>(amountOfBoids, Allocator.Temp); // TO DISPOSE
+
+            // Create the boid entities, from the boidArray.
+            entityManager.CreateEntity(boidEntityArchetype, boidArray);
+
+            /* Set component values such as:
+                random position and rotation,
+                Mesh and  Mesh Renderer
+                for each boid in present in the boidArray
+            */
+            for (int i = 0; i < boidArray.Length; i++)
+            {
+                //Set the position and rotation
+                entityManager.SetComponentData(boidArray[i], new LocalToWorld
+                {
+
+                    //Access the TRANSFORM of the entity. TRS(translation,rotation,scale) 
+                    Value = float4x4.TRS(
+                            RandomisePositions(),       // Randomise the spawn location for each boid.
+                            RandomiseRotation(),       // Randomise the spawn rotation for each boid.
+                            scale)
+                });
+
+                //Set the RenderMesh values, RenderMesh (Mesh, Material)
+                entityManager.SetSharedComponentData(boidArray[i], new RenderMesh
+                {
+                    mesh = boidSharedMesh,        // Set Mesh
+                    material = boidSharedMaterial, // Set Material
+                });
+            }
+
+            //DISPOSE ARRAY
+            boidArray.Dispose();
+            canvas.SetActive(false);
+            stopLoop++;
+        }
     }
 }

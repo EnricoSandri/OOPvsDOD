@@ -24,6 +24,8 @@ public class ECS_Jobs_Burst_PerlinSystem : JobComponentSystem
             float scale2 = perlinManager.scale2;
             float strenght3 = perlinManager.strenght3;
             float scale3 = perlinManager.scale3;
+            float moveVal = perlinManager.moveValue.value;
+            strenght1 = moveVal;
 
             var jobHandle = Entities.ForEach((ref Translation position, ref ECS_Jobs_Burst_CubeData cubeData) =>{
 

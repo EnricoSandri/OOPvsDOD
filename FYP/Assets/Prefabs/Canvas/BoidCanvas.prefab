@@ -319,7 +319,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Button
+  m_Text: Start
 --- !u!1 &7554057989237158026
 GameObject:
   m_ObjectHideFlags: 0
@@ -599,7 +599,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: ECS_BoidManager, Assembly-CSharp
+        m_TargetAssemblyTypeName: BoidManager, Assembly-CSharp
         m_MethodName: set_IsActive
         m_Mode: 6
         m_Arguments:

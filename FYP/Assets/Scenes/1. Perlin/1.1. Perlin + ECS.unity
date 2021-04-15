@@ -180,7 +180,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cubePrefab: {fileID: 2797450364371901692, guid: 310e603f864149549a0e16b2dc890fc9, type: 3}
-  worldHalfSize: 150
+  axisHalfSize: 0
   strenght1: 1
   scale1: 0.1
   strenght2: 1

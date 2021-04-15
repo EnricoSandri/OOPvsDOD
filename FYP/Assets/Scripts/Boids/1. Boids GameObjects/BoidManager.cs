@@ -1,6 +1,9 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using Random = UnityEngine.Random;
 
 public class BoidManager : MonoBehaviour
 {
@@ -39,20 +42,11 @@ public class BoidManager : MonoBehaviour
     public  List<Boids> boids;
     private Quaternion randomRotation;
     private Vector3 randomPosition;
-    private void Awake()
-    {
-        instance = this; // Set the instance to this instance.
-
-        boids.Clear(); // Make sure the list of boids is empty.
-
-        // Spawn the # boids in the enclosure at random positions and rotations. 
-        for (int i = 0; i < amountOfBoids; i++)  //Iteration through the number of boids set by the user.
-        {
-            RandomisePositions();       // Randomise the spawn location for each boid.
-            RandomiseRotation();        // Randomise the spawn rotation for each boid.
-            InstatiateAndAddToList();   // Instantiation of the boids and applying the randomised values.
-        }
-    }
+    
+    public bool IsActive { get; set; }
+    public GameObject canvas;
+    public Text inputText;
+    private int stopLoop;
     
     //Randomise the spawn position values within the enclosure.
     private void RandomisePositions()
@@ -92,5 +86,29 @@ public class BoidManager : MonoBehaviour
         Gizmos.DrawWireCube(                  // Draw the Cube with the center being x0.y0.z0 and size of enclosure.
             Vector3.zero, 
             new Vector3(enclosureSize, enclosureSize, enclosureSize)); 
+    }
+
+    private void Update()
+    {
+        if (IsActive && stopLoop < 1)
+        {
+            int inputValue = int.Parse(inputText.text);
+            amountOfBoids = inputValue;
+            
+            instance = this; // Set the instance to this instance.
+
+            boids.Clear(); // Make sure the list of boids is empty.
+
+            // Spawn the # boids in the enclosure at random positions and rotations. 
+            for (int i = 0; i < amountOfBoids; i++)  //Iteration through the number of boids set by the user.
+            {
+                RandomisePositions();       // Randomise the spawn location for each boid.
+                RandomiseRotation();        // Randomise the spawn rotation for each boid.
+                InstatiateAndAddToList();   // Instantiation of the boids and applying the randomised values.
+            }
+            canvas.SetActive(false);
+            stopLoop++;
+        }
+        
     }
 }
