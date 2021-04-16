@@ -5,10 +5,7 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 0
-    path: Assets/Scenes/1. Perlin/0.1. Perlin GameObjects.unity
-    guid: 103754ee007a1c14697cebed94db55a4
   - enabled: 1
-    path: Assets/Scenes/2. Boids/2. Boids + Ecs.unity
-    guid: 841a71e8251ea9443a55328dd43273ae
+    path: Assets/Scenes/2. Boids/4. Boids + Ecs & Jobs & Burst.unity
+    guid: d1da4d8cb65b6a44e84264b1af6585e7
   m_configObjects: {}

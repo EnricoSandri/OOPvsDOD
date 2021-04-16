@@ -330,14 +330,14 @@ MonoBehaviour:
   amountOfBoids: 5000
   boidSharedMesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
   boidSharedMaterial: {fileID: 2100000, guid: df2d38f04ce178c448e415b6e525b7c0, type: 2}
-  speed: 10
+  speed: 1
   perceptionRadius: 1
   separationMultiplier: 1
   cohesionMultiplier: 1
   alignmentMultiplier: 1
-  enclosureSize: 100
-  wallAvoidanceMultiplier: 10
-  turnAwayFromWallDistance: 10
+  enclosureSize: 10
+  wallAvoidanceMultiplier: 1
+  turnAwayFromWallDistance: 0.1
   scale:
     x: 0.1
     y: 0.1

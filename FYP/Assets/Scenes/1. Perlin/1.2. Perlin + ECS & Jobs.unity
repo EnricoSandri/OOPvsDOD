@@ -317,12 +317,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cubePrefab: {fileID: 2797450364371901692, guid: 2c8aa2ae60836fd49a4367d74a56bb1e, type: 3}
-  worldHalfSize: 225
-  strenght1: 1
+  axisHalfSize: 0
+  strenght1: 2
   scale1: 0.1
-  strenght2: 1
+  strenght2: 2
   scale2: 0.1
-  strenght3: 1
+  strenght3: 2
   scale3: 0.1
   canvas: {fileID: 212629011}
   amount: {fileID: 729798308}

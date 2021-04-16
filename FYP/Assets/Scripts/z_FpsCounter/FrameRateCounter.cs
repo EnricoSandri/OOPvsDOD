@@ -12,8 +12,8 @@ public class FrameRateCounter : MonoBehaviour
 
     public enum DisplayMode { FPS, MS};
 
-    private List<float> time = new List<float>();
-    private List<float> bestTime = new List<float>();
+    //private List<float> time = new List<float>();
+    //private List<float> bestTime = new List<float>();
 
 
     [SerializeField]
@@ -27,12 +27,12 @@ public class FrameRateCounter : MonoBehaviour
     float duration;
     float bestDuration = float.MaxValue;
     float worstDuration;
+    private float frameDuration;
 
     private void Update()
     {
-        float
-            frameDuration = Time.unscaledDeltaTime; // get the time elapesed between previous frame and the current one
-        frames += 1;
+        frameDuration = Time.unscaledDeltaTime; // get the time elapesed between previous frame and the current one
+        frames++;
         duration += frameDuration;
 
         // check if current frame duration is < bestDuration, if so make it the bestDuration.
@@ -51,7 +51,7 @@ public class FrameRateCounter : MonoBehaviour
         {
             if (displayMode == DisplayMode.FPS)
             {
-                var best = 1f / bestDuration;
+                var best = 1f / frameDuration;
                 var avg = frames / duration;
                 var wrst = 1f / worstDuration;
 
@@ -63,8 +63,8 @@ public class FrameRateCounter : MonoBehaviour
                     wrst
                     //sampleDuration
                 );
-                bestTime.Add(best);
-                time.Add(frames);
+                //bestTime.Add(best);
+                //time.Add(frames);
                 //display.SetText(
                 //    "FPS\n{0:0}\n{1:0}\n{2:0}\n  {3:1}",
                 //    1f / bestDuration, 

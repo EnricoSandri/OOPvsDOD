@@ -540,9 +540,9 @@ MonoBehaviour:
   boidSharedMaterial: {fileID: 2100000, guid: df2d38f04ce178c448e415b6e525b7c0, type: 2}
   speed: 1
   perceptionRadius: 1
-  separationMultiplier: 4
-  cohesionMultiplier: 0.1
-  alignmentMultiplier: 5
+  separationMultiplier: 1
+  cohesionMultiplier: 1
+  alignmentMultiplier: 1
   enclosureSize: 10
   wallAvoidanceMultiplier: 1
   turnAwayFromWallDistance: 0.1
