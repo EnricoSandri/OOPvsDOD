@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using Unity.Entities;
 using Unity.Jobs;
+using Unity.Rendering;
 using Unity.Transforms;
 public class ECS_Jobs_PerlinSystem : JobComponentSystem
 {
@@ -35,7 +36,7 @@ public class ECS_Jobs_PerlinSystem : JobComponentSystem
 
                     position.Value = new Vector3(vertex.x, height, vertex.z);
 
-            }).Schedule(inputDeps);
+            }).WithoutBurst().Schedule(inputDeps);
             jobHandle.Complete();
         }
         return inputDeps;

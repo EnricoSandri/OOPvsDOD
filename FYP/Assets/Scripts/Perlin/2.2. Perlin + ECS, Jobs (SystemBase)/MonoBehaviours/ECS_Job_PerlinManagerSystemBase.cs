@@ -54,9 +54,9 @@ public class ECS_Job_PerlinManagerSystemBase : MonoBehaviour
         Entity cubeEntity = GameObjectConversionUtility.ConvertGameObjectHierarchy(cubePrefab, settings);
 
         //DRAW THE CUBES IN EACH DIRECTION
-        for (int z = -worldHalfSize; z <= worldHalfSize; z++)
+        for (int z = -worldHalfSize; z < worldHalfSize; z++)
         {
-            for (int x = -worldHalfSize; x <= worldHalfSize; x++)
+            for (int x = -worldHalfSize; x < worldHalfSize; x++)
             {
                 var position = new Vector3(x, 0, z);
                 Entity entityInstance;
