@@ -77,7 +77,14 @@ public struct MoveForward : IComponentData
             }
         } 
     }
-    
+[ BurstCompile ] 
+public struct Job : IJob 
+{
+    public void Execute ( ) 
+    {
+        // Actual job code
+    } 
+}
 
 
 
@@ -93,7 +100,7 @@ public class MovementComponent : MonoBehaviour
     }
 }
 
-public struct Job : IJobParallelFor 
+public struct Job1 : IJobParallelFor 
 {
     [ReadOnly] public NativeArray<float> input; 
     [WriteOnly] public NativeArray<float > output;
